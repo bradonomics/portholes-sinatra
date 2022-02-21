@@ -1,0 +1,6 @@
+<main class="main">
+  <h1>Your Folders</h1>
+  <% @folders.each do |folder| %>
+    <p><a href="/folder/<%= folder.permalink %>"><%= folder.name %></a></p>
+  <% end %>
+</main>

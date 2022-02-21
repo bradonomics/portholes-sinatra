@@ -1,0 +1,7 @@
+<main class="main">
+  <div id="articles">
+    <% @articles.each do |article| %>
+      <a href="<%= article.link %>"><%= article.title %></a>
+     <% end %>
+  </div>
+</main>

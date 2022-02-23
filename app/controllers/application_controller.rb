@@ -20,8 +20,8 @@ class ApplicationController < Sinatra::Base
   helpers do
 
     def inline_svg(path)
-      file = File.open("app/public/images/#{path}", "rb")
-      raw file.read
+      file = File.open("public/images/#{path}", "rb")
+      file.read.to_s
     end
 
   #   def redirect_to_home_page

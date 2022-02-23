@@ -1,0 +1,55 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $font-size-base;
+  -webkit-text-size-adjust: 100%; // Prevent adjustments of font size after orientation changes in iOS.
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: $background-color;
+  text-rendering: optimizeLegibility;
+  line-height: 1.61803398875;
+  color: $body-text-color;
+  font-family: $body-font;
+}
+
+p {
+  margin-top: ($spacer * 2);
+  margin-bottom: ($spacer * 2);
+  word-break: break-word;
+}
+
+// Add the correct font weight in Chrome, Edge, and Safari.
+b,
+strong {
+  font-weight: bolder;
+}
+
+a {
+  color: $primary-color;
+
+  &:hover {
+    color: lighten($primary-color, 7%);
+  }
+
+}
+
+img {
+  margin-bottom: 2rem;
+  max-width: 100%;
+  height: auto;
+}
+
+::-moz-selection {
+  background-color: $primary-color;
+  color: #fff;
+}
+
+::selection {
+  background-color: $primary-color;
+  color: #fff;
+}

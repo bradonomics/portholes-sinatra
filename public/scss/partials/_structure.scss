@@ -1,0 +1,73 @@
+%wrap {
+  position: relative;
+  width: 100%;
+  max-width: 40rem;
+  padding: 0 1rem;
+  @include breakpoint(lg) {
+    max-width: 48rem;
+  }
+  @include breakpoint(xl) {
+    max-width: 57rem;
+  }
+  @include breakpoint(xxl) {
+    max-width: 64rem;
+  }
+}
+
+.site-inner {
+  @extend %row; // in utilities.scss
+  @extend %wrap; // in structure.scss (above)
+  position: relative;
+  margin: 0 auto;
+  padding: 2.5rem $spacer;
+
+  .sidebar-content &,
+  .content-sidebar & {
+    justify-content: space-between;
+  }
+
+}
+
+.main {
+  display: block; // Fixes IE bug on `main` element
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  @include breakpoint(lg) {
+    flex: 0 0 30rem;
+    max-width: 30rem;
+  }
+  @include breakpoint(xl) {
+    flex: 0 0 42rem;
+    max-width: 42rem;
+  }
+  @include breakpoint(xxl) {
+    flex: 0 0 49rem;
+    max-width: 49rem;
+  }
+
+  .sidebar-content &,
+  .content-sidebar & {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+  }
+
+}
+
+.sidebar {
+  position: relative;
+  margin-bottom: ($spacer * 2);
+  width: 100%;
+  max-width: 100%;
+  @include breakpoint(lg) {
+    flex: 0 0 11rem;
+    margin-bottom: 0;
+    max-width: 11rem;
+  }
+  // @include breakpoint(xxl) {
+  //   flex: 0 0 17rem;
+  //   max-width: 17rem;
+  // }
+}

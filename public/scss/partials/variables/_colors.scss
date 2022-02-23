@@ -1,0 +1,20 @@
+$primary-color: rgb(135, 184, 133);
+$secondary-color: rgb(255, 255, 255);
+$body-text-color: rgb(69, 69, 69);
+$background-color: rgb(251, 250, 249);
+$border-color: rgba(52, 65, 79, .32);
+$danger-color: rgba(220, 53, 69, 1);
+
+$image-overlay: linear-gradient(45deg, $primary-color 20%, lighten($primary-color, 30%) 100%);
+
+$notice-color: rgb(21, 87, 36);
+$notice-background: rgb(212, 237, 218);
+$notice-border: rgb(195, 230, 203);
+
+$warning-color: rgb(133, 100, 4);
+$warning-background: rgb(255, 243, 205);
+$warning-border: rgb(255, 238, 186);
+
+$alert-color: rgb(114, 28, 36);
+$alert-background: rgb(248, 215, 218);
+$alert-border: rgb(245, 198, 203);

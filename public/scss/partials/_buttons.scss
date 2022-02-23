@@ -1,0 +1,54 @@
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+button,
+.button {
+  display: inline-block;
+  border: 0;
+  border-radius: .438rem;
+  background-color: $body-text-color;
+  cursor: pointer;
+  padding: .692rem ($spacer);
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  appearance: none;
+
+  &:hover {
+    background-color: lighten($body-text-color, 7%);
+    color: #fff;
+  }
+
+  &.primary {
+    background-color: $primary-color;
+
+    &:hover {
+      background-color: lighten($primary-color, 7%);
+    }
+
+  }
+
+  &.danger {
+    background-color: $danger-color;
+
+    &:hover {
+      background-color: lighten($danger-color, 7%);
+    }
+
+  }
+
+  &.small {
+    padding: .346rem .5rem;
+  }
+
+  &:disabled {
+    background-color: lighten($primary-color, 7%);
+
+    &:hover {
+      cursor: not-allowed;
+    }
+
+  }
+
+}

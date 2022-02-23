@@ -1,0 +1,24 @@
+.screen-reader-text {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  overflow: hidden;
+  word-wrap: normal !important;
+  clip: rect(0, 0, 0, 0);
+}
+
+.screen-reader-text:focus {
+  display: block;
+  z-index: 100000;
+  width: auto;
+  height: auto;
+  box-shadow: 0 0 .125rem .125rem rgba(0, 0, 0, .6);
+  background: #f4f4f4;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1em;
+  font-weight: 700;
+  clip: auto !important;
+}

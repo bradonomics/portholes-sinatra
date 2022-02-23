@@ -1,0 +1,46 @@
+.site-header {
+  @extend %row; // in utilities.scss
+  position: relative;
+  transition: all .5s ease;
+  width: 100%;
+  border-bottom: .063rem solid $border-color;
+  background-color: $background-color;
+  padding-right: ($spacer * 2);
+  padding-left: ($spacer * 2);
+  @include breakpoint(md) {
+    align-items: center;
+  }
+}
+
+.site-title {
+  margin: 2rem 0;
+  text-align: center;
+  @include breakpoint(md) {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    line-height: 1.2;
+    color: $body-text-color;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    &:hover {
+      text-decoration: none;
+      color: $body-text-color;
+    }
+
+  }
+
+}
+
+// .header-image .site-title {
+//   display: block;
+//   text-indent: -9999px;
+//
+//   > a {
+//     background: url('/assets/images/logo.png') no-repeat left;
+//   }
+//
+// }

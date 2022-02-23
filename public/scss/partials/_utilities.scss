@@ -1,0 +1,74 @@
+%row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.row {
+  @extend %row; // in utilities.scss (above)
+}
+
+// .one-half {
+//   position: relative;
+//   width: 100%;
+//   @include breakpoint(md) {
+//     flex: 0 0 calc((100% - 1rem) / 2);
+//     max-width: calc((100% - 1rem) / 2);
+//   }
+// }
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+.mt-1 {
+  margin-top: $spacer !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mb-1 {
+  margin-bottom: $spacer !important;
+}
+
+.mb-2 {
+  margin-bottom: ($spacer * 2) !important;
+}
+
+.mb-4 {
+  margin-bottom: ($spacer * 4) !important;
+}
+
+.text-bold  {
+  font-weight: bold !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.align-middle {
+  vertical-align: middle !important;
+}
+
+.color-danger {
+  color: $alert-color;
+}

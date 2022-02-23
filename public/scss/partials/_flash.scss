@@ -1,0 +1,59 @@
+.flash {
+  position: relative;
+  align-self: baseline;
+  margin-bottom: $spacer;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  padding: ($spacer * .75) ($spacer * 1.25);
+}
+
+.flash-notice,
+.flash-success {
+  border-color: $notice-border;
+  background-color: $notice-background;
+  color: $notice-color;
+
+  a {
+    color: $notice-color;
+
+    &:hover {
+      color: lighten($notice-color, 20%);
+    }
+
+  }
+
+}
+
+.flash-warning {
+  border-color: $warning-border;
+  background-color: $warning-background;
+  color: $warning-color;
+
+  a {
+    color: $warning-color;
+
+    &:hover {
+      color: lighten($warning-color, 20%);
+    }
+
+  }
+
+}
+
+.flash-alert,
+.flash-error {
+  border-color: $alert-border;
+  background-color: $alert-background;
+  color: $alert-color;
+
+  a {
+    color: $alert-color;
+
+    &:hover {
+      color: lighten($alert-color, 20%);
+    }
+
+  }
+
+}

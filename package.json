@@ -1,0 +1,19 @@
+{
+  "name": "portholes-sinatra",
+  "description": "Instapaper replacement written with Ruby and using Sinatra",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradonomics/portholes-sinatra"
+  },
+  "author": "Brad West",
+  "engines": {
+    "node": ">= 16.14.0"
+  },
+  "devDependencies": {
+    "sass": "^1.49.8"
+  },
+  "scripts": {
+    "css": "sass public/scss/styles.scss public/css/styles.css"
+  }
+}

@@ -1,0 +1,52 @@
+.pagination {
+  margin-top: $spacer * 2;
+  text-align: center;
+
+  .page {
+    display: inline-block;
+    margin: .1rem;
+    padding: 0;
+    overflow: hidden;
+
+    &.active {
+      border: .125rem solid $primary-color;
+      border-radius: .438rem;
+      background: $primary-color;
+      padding: .4rem 1rem;
+      text-decoration: none;
+      color: #fff;
+    }
+
+  }
+
+  .disabled {
+    display: inline-block;
+    margin: .1rem;
+    border: .125rem solid $primary-color;
+    border-radius: .438rem;
+    padding: .4rem 1rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: $primary-color;
+  }
+
+  a {
+    display: block;
+    border: .125rem solid $primary-color;
+    border-radius: .438rem;
+    padding: .4rem 1rem;
+    overflow: hidden;
+    text-decoration: none;
+
+    &:hover {
+      background: $primary-color;
+      color: #fff;
+    }
+
+    + a {
+      margin-left: .5rem;
+    }
+
+  }
+
+}

@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    redirect to '/folders'
+    redirect_to_home_page
   end
 
   helpers do
@@ -28,9 +28,9 @@ class ApplicationController < Sinatra::Base
   #     redirect to "/expenses"
   #   end
 
-  #   def redirect_to_categories
-  #     redirect to "/categories"
-  #   end
+    def redirect_to_home_page
+      redirect to '/folder/unread'
+    end
 
   end
 

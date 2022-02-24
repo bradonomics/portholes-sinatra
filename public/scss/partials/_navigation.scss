@@ -73,7 +73,7 @@
     opacity: 0;
     z-index: 1;
     margin: 0;
-    width: 100%;
+    width: auto;
     border-radius: .125rem;
     box-shadow: 0 1rem 2.813rem rgba(0,0,0,.18);
     background-color: $body-text-color;
@@ -125,30 +125,6 @@
 
   }
 
-}
-
-
-// Responsive Menu
-.responsive-menu-icon {
-  display: flex;
-  align-items: center;
-  align-self: center;
-  font-size: .8rem;
-  @include breakpoint(md) {
-    display: none;
-  }
-
-  &::after {
-    display: inline-block;
-    margin: 0 0 0 .625rem;
-    width: 1rem;
-    border-top: .438rem double;
-    border-bottom: .125rem solid;
-    border-top-width: .563rem;
-    border-bottom-width: .188rem;
-    padding-bottom: .188rem;
-    content: '';
-  }
 }
 
 .sub-menu-toggle {

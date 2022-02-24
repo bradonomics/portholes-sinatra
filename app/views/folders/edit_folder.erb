@@ -1,0 +1,22 @@
+<%= erb :'folders/_sidebar' %>
+
+<main class="main">
+  <h1>Edit <%= @folder.name %></h1>
+
+  <form class="folder-edit" action="/folder/<%= params[:permalink] %>" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    <div class="d-flex justify-content-between">
+      <div class="field">
+        <label for="folder_name">Name</label>
+        <input type="text" value="<%= @folder.name %>" name="name">
+      </div>
+      <input type="submit" name="commit" value="Update Folder">
+    </div>
+  </form>
+
+  <form onsubmit="confirm('Are you sure you want to delete this folder?')" action="/folder/<%= params[:permalink] %>/delete" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="button danger" type="submit">Delete Folder</button>
+  </form>
+
+</main>

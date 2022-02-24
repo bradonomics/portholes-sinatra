@@ -43,6 +43,11 @@
     </header>
 
     <div class="site-inner">
+      <% if flash.has?(:message) %>
+        <div class="flash flash-success"><%= flash[:message] %></div>
+      <% elsif flash.has?(:error) %>
+        <div class="flash flash-error"><%= flash[:error] %></div>
+      <% end %>
       <%= yield %>
     </div>
 

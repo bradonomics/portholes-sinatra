@@ -1,7 +1,45 @@
+<%= erb :'folders/_sidebar' %>
+
 <main class="main">
+
+  <h1>
+    <%= @folder.name %>
+    <% unless default_folder? %>
+      <a href="/folder/<%= params[:permalink] %>/edit"><%= inline_svg("edit-solid.svg") %>Edit</a>
+    <% end %>
+  </h1>
+
   <div id="articles">
     <% @articles.each do |article| %>
-      <a href="<%= article.link %>"><%= article.title %></a>
+      <div class="article" data-id="<%= article.id %>">
+        <div class="sort-title-wrapper">
+          <% unless request.path_info == "/folder/archive" %>
+            <div class="sort">
+              <%= inline_svg("sort-solid.svg") %>
+            </div>
+          <% end %>
+          <div class="title-wrapper">
+            <p class="title"><a href="/article/<%= article.id %>"><%= article.title %></a></p>
+            <% if article.link.include? 'http' %>
+              <p class="link"><%= url_only(article.link) %><a href="<%= article.link %>"><%= inline_svg('external-link-alt-solid.svg') %></a></p>
+            <% end %>
+          </div>
+        </div>
+        <div class="archive-delete-wrapper">
+          <% unless request.path_info == "/folder/archive" %>
+            <a class="archive" href="#" title="Archive this Article"><%= inline_svg("archive.svg") %></a>
+            <%#= link_to inline_svg("archive.svg"), archive_article_path(article), method: :patch, class: "archive", title: "Archive this Article" %>
+          <% end %>
+          <% unless request.path_info == "/folder/unread" %>
+            <a class="archive" href="#" title="Move to Unread Folder"><%= inline_svg("home.svg") %></a>
+            <%#= link_to inline_svg("home.svg"), unarchive_article_path(article), method: :patch, class: "archive", title: "Move to Unread Folder" %>
+          <% end %>
+          <a class="delete" href="#" title="Delete This Article"><%= inline_svg("trash.svg") %></a>
+          <%#= link_to inline_svg("trash.svg"), article_path(article), method: :delete, data: { confirm: "Are you sure you want to permanently delete this article?" }, class: "delete", title: "Delete This Article" %>
+        </div>
+      </div>
      <% end %>
   </div>
+  <%#= binding.pry %>
+  <%#= pagy_nav(@pagy) if @pagy.pages > 1 %>
 </main>

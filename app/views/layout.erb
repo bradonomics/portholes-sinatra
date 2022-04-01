@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css">
   </head>
 
-  <body>
+  <body<% if article_page? %> class="content-sidebar"<% end %>>
 
     <header class="site-header">
 
@@ -51,7 +51,24 @@
       <%= yield %>
     </div>
 
+    <div id="add-link-modal" class="modal add-link">
+      <div class="modal__content">
+        <div class="modal__header">
+          Add a New Article
+          <span class="modal__close" data-close="true" title="Close">&times;</span>
+        </div>
+        <div class="modal__body">
+          <form class="article-add" action="/article" method="post">
+            <input class="article-add__input" type="text" name="link">
+            <input type="hidden" name="folder_id" value="1">
+            <input class="button primary" type="submit" name="commit" value="Add Article">
+          </form>
+        </div>
+      </div>
+    </div>
+
     <script src="/js/navigation.js"></script>
+    <script src="/js/add-link-modal.js"></script>
 
   </body>
 

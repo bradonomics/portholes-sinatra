@@ -7,6 +7,24 @@ class ArticlesController < ApplicationController
     erb :'articles/new_article'
   end
 
+  # create new article
+  post '/article' do
+    document = Portholes.new(params[:link])
+    article = Article.new
+    article.title = document.title
+    article.link = document.url
+    article.body = document.body
+    article.folder_id = params[:folder_id]
+    article.position = Article.count + 1
+    article.save!
+    folder = Folder.find(article.folder_id)
+    redirect to("/folder/#{folder.permalink}")
+  rescue StandardError => error
+    flash[:error] = error.message
+    folder = Folder.find(params[:folder_id])
+    redirect to("/folder/#{folder.permalink}")
+  end
+
   # display an article
   get '/article/:id' do
     @article = Article.find(params[:id])

@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require 'rack-flash'
+require 'better_errors'
 
 class ApplicationController < Sinatra::Base
 
@@ -11,6 +12,8 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    use BetterErrors::Middleware
+    BetterErrors.application_root = __dir__
   end
 
   get '/' do

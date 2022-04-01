@@ -16,7 +16,11 @@ gem 'rack-flash3'
 
 # Tools
 gem 'rake'
+
+# Debugging
 gem 'pry'
+gem 'better_errors'
+gem 'binding_of_caller'
 
 # Pagination
 gem 'pagy', '>= 5.10.1'

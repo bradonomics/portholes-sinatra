@@ -1,25 +1,5 @@
 .sidebar {
 
-  // ul {
-  //   list-style-position: inside;
-  // }
-  //
-  // li {
-  //   margin-bottom: ($spacer / 2);
-  //   border-bottom: .05rem dotted #ddd;
-  //   padding-bottom: ($spacer / 2);
-  // }
-  //
-  // p:last-child,
-  // ul > li:last-child {
-  //   margin-bottom: 0;
-  // }
-  //
-  // .widget {
-  //   margin-bottom: ($spacer * 2);
-  //   background-color: #fff;
-  // }
-
   .content-sidebar & {
     order: 2;
   }
@@ -35,8 +15,7 @@
     color: $body-text-color;
     font-weight: bold;
 
-    &:hover,
-    &.active {
+    &:hover {
       border-radius: 4px;
       background-color: rgba(36, 45, 66, .16);
     }
@@ -76,6 +55,26 @@
 
     input[type='submit'] {
       display: none;
+    }
+
+  }
+
+  .article-delete-button {
+    display: block;
+
+    button {
+      display: flex;
+      align-items: center;
+      margin-bottom: .5rem;
+      padding: .313rem 1rem .313rem 2.4rem;
+
+      &:hover {
+        width: 100%;
+        border-radius: 4px;
+        background-color: rgba(36, 45, 66, .16);
+        color: $body-text-color;
+      }
+
     }
 
   }

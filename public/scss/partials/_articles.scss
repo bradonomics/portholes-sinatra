@@ -85,16 +85,23 @@
   .archive-delete-wrapper {
     display: flex;
 
-    a {
+    a,
+    button {
       display: flex;
       margin-left: 1rem;
       width: 1rem;
+      height: 1rem;
       color: $body-text-color;
 
       &:hover {
         color: lighten($body-text-color, 10%);
       }
 
+    }
+
+    button {
+      background-color: transparent;
+      padding: 0;
     }
 
   }

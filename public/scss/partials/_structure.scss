@@ -21,7 +21,6 @@
   margin: 0 auto;
   padding: 2.5rem $spacer;
 
-  .sidebar-content &,
   .content-sidebar & {
     justify-content: space-between;
   }
@@ -47,7 +46,6 @@
     max-width: 49rem;
   }
 
-  .sidebar-content &,
   .content-sidebar & {
     border: 0;
     background-color: transparent;
@@ -66,8 +64,4 @@
     margin-bottom: 0;
     max-width: 11rem;
   }
-  // @include breakpoint(xxl) {
-  //   flex: 0 0 17rem;
-  //   max-width: 17rem;
-  // }
 }

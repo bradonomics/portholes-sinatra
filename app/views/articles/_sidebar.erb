@@ -1,0 +1,20 @@
+<aside class="sidebar">
+  <nav class="widget">
+    <% if @article.link.include? 'http' %>
+      <a href="<%= @article.link %>"><%= inline_svg('external-link-alt-solid.svg') %>Original</a>
+    <% end %>
+    <a href="/article/<%= params[:id] %>/edit"><%= inline_svg('edit-solid.svg') %>Edit</a>
+    <% unless @article.folder.permalink == 'archive' %>
+      <a href="<%#= archive_article_path(article) %>"><%= inline_svg("archive.svg") %>Archive</a>
+    <% end %>
+    <% unless @article.folder.permalink == 'unread' %>
+      <a href="<%#= unarchive_article_path(article) %>"><%= inline_svg("archive.svg") %>Unread</a>
+    <% end %>
+
+    <form class="article-delete-button" onsubmit="confirm('Are you sure you want to delete this article?')" action="/article/<%= params[:id] %>/delete" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <button class="delete no-button" type="submit"><%= inline_svg('trash.svg') %>Delete Article</button>
+    </form>
+
+  </nav>
+</aside>

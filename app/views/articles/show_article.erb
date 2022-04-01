@@ -1,0 +1,15 @@
+<%= erb :'articles/_sidebar' %>
+
+<main class="main">
+  <article class="page">
+
+    <header class="page__header">
+      <h1 class="page__title"><%= @article.title %></h1>
+    </header>
+
+    <div class="page__content">
+      <%= @article.body %>
+    </div>
+
+  </article>
+</main>

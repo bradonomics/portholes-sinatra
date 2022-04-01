@@ -1,0 +1,30 @@
+<form class="article-form" action="/article" method="post">
+
+  <div class="field">
+    <label for="article_title">Title</label>
+    <input type="text" name="title">
+  </div>
+
+  <div class="field">
+    <label for="article_folder_id">Folder</label>
+    <select name="folder_id">
+      <% @folders.each do |folder| %>
+        <option value="<%= folder.id %>"><%= folder.name %></option>
+      <% end %>
+    </select>
+  </div>
+
+    <div class="field">
+      <label for="article_link">Link</label>
+      <input type="text" name="link">
+    </div>
+
+  <div class="field">
+    <label for="article_body">Body</label>
+    <textarea rows="25" name="body"></textarea>
+  </div>
+
+  <div class="actions">
+    <input type="submit" name="commit" value="Update Article">
+  </div>
+</form>

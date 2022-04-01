@@ -238,7 +238,7 @@ img {
   margin: 0 auto;
   padding: 2.5rem 1rem;
 }
-.sidebar-content .site-inner, .content-sidebar .site-inner {
+.content-sidebar .site-inner {
   justify-content: space-between;
 }
 
@@ -267,7 +267,7 @@ img {
     max-width: 49rem;
   }
 }
-.sidebar-content .main, .content-sidebar .main {
+.content-sidebar .main {
   border: 0;
   background-color: transparent;
   padding: 0;
@@ -698,6 +698,11 @@ button:disabled:hover,
   cursor: not-allowed;
 }
 
+.no-button {
+  background-color: transparent;
+  color: #454545;
+}
+
 .article {
   display: flex;
   flex-direction: row;
@@ -760,14 +765,21 @@ button:disabled:hover,
 .article .archive-delete-wrapper {
   display: flex;
 }
-.article .archive-delete-wrapper a {
+.article .archive-delete-wrapper a,
+.article .archive-delete-wrapper button {
   display: flex;
   margin-left: 1rem;
   width: 1rem;
+  height: 1rem;
   color: #454545;
 }
-.article .archive-delete-wrapper a:hover {
+.article .archive-delete-wrapper a:hover,
+.article .archive-delete-wrapper button:hover {
   color: #5f5f5f;
+}
+.article .archive-delete-wrapper button {
+  background-color: transparent;
+  padding: 0;
 }
 
 .page {
@@ -802,16 +814,9 @@ button:disabled:hover,
   color: #454545;
   font-weight: bold;
 }
-.sidebar nav a:hover, .sidebar nav a.active {
+.sidebar nav a:hover {
   border-radius: 4px;
   background-color: rgba(36, 45, 66, 0.16);
-}
-.sidebar nav a.primary {
-  background-color: #87b885;
-  color: #fff;
-}
-.sidebar nav a.primary:hover {
-  background-color: #9dc59c;
 }
 .sidebar svg {
   position: absolute;
@@ -832,6 +837,21 @@ button:disabled:hover,
 }
 .sidebar form input[type=submit] {
   display: none;
+}
+.sidebar .article-delete-button {
+  display: block;
+}
+.sidebar .article-delete-button button {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.313rem 1rem 0.313rem 2.4rem;
+}
+.sidebar .article-delete-button button:hover {
+  width: 100%;
+  border-radius: 4px;
+  background-color: rgba(36, 45, 66, 0.16);
+  color: #454545;
 }
 
 .pagination {

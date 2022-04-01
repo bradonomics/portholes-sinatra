@@ -10,6 +10,9 @@ Dir.glob(File.join(APP_ROOT, 'app', 'models', '*.rb')).each { |file| require fil
 # Require Controllers
 Dir.glob(File.join(APP_ROOT, 'app', 'controllers', '*.rb')).each { |file| require file }
 
+# Require Portholes
+require File.join(APP_ROOT, 'lib', 'portholes.rb')
+
 # Database Configuration
 ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',

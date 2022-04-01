@@ -16,6 +16,8 @@ gem 'rack-flash3'
 
 # Tools
 gem 'rake'
+gem 'httparty'
+gem 'nokogiri'
 
 # Debugging
 gem 'pry'

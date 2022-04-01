@@ -1,10 +1,11 @@
 class FoldersController < ApplicationController
+  include Pagy::Backend
 
   before do
     @folders = Folder.all
   end
 
-  # create a new folder
+  # create new folder
   post '/folder' do
     folder = Folder.find_by(name: params[:name])
     if folder.nil?
@@ -20,11 +21,15 @@ class FoldersController < ApplicationController
   get '/folder/:permalink' do
     @folder = Folder.find_by(permalink: params[:permalink])
     @articles = @folder.articles
+    if params[:permalink] == 'unread'
+      @pagy, @articles = pagy(@articles.order(position: :asc), items: 50)
+    else
+      @pagy, @articles = pagy(@articles.order(position: :desc), items: 50)
+    end
     erb :'folders/show_folder'
-
   end
 
-  # edit a folder
+  # edit folder page
   get '/folder/:permalink/edit' do
     @folder = Folder.find_by(permalink: params[:permalink])
     erb :'folders/edit_folder'
@@ -62,10 +67,7 @@ class FoldersController < ApplicationController
   end
 
   helpers do
-
-    def downloadable_folder?
-      return true if request.path_info.include?('/folder') && request.path_info != '/folder/archive'
-    end
+    include Pagy::Frontend
 
     def default_folder?
       return true if request.path_info == '/folder/unread' || request.path_info == '/folder/archive'

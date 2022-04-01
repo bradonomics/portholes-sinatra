@@ -17,3 +17,6 @@ gem 'rack-flash3'
 # Tools
 gem 'rake'
 gem 'pry'
+
+# Pagination
+gem 'pagy', '>= 5.10.1'

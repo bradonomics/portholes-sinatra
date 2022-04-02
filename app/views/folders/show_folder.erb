@@ -27,15 +27,23 @@
         </div>
         <div class="archive-delete-wrapper">
           <% unless request.path_info == "/folder/archive" %>
-            <a class="archive" href="#" title="Archive this Article"><%= inline_svg("archive.svg") %></a>
-            <%#= link_to inline_svg("archive.svg"), archive_article_path(article), method: :patch, class: "archive", title: "Archive this Article" %>
+            <form action="/article/<%= article.id %>/archive" method="post">
+              <input type="hidden" name="_method" value="patch">
+              <button class="archive" type="submit" title="Archive This Article"><%= inline_svg("archive.svg") %></button>
+            </form>
           <% end %>
           <% unless request.path_info == "/folder/unread" %>
-            <a class="archive" href="#" title="Move to Unread Folder"><%= inline_svg("home.svg") %></a>
+            <form action="/article/<%= article.id %>/unarchive" method="post">
+              <input type="hidden" name="_method" value="patch">
+              <button class="archive" type="submit" title="Move to Unread Folder"><%= inline_svg("home.svg") %></button>
+            </form>
+            <!-- <a class="archive" href="#" title="Move to Unread Folder"><%= inline_svg("home.svg") %></a> -->
             <%#= link_to inline_svg("home.svg"), unarchive_article_path(article), method: :patch, class: "archive", title: "Move to Unread Folder" %>
           <% end %>
-          <a class="delete" href="#" title="Delete This Article"><%= inline_svg("trash.svg") %></a>
-          <%#= link_to inline_svg("trash.svg"), article_path(article), method: :delete, data: { confirm: "Are you sure you want to permanently delete this article?" }, class: "delete", title: "Delete This Article" %>
+          <form onsubmit="confirm('Are you sure you want to delete this article?')" action="/article/<%= article.id %>/delete" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="delete" type="submit" title="Delete This Article"><%= inline_svg("trash.svg") %></button>
+          </form>
         </div>
       </div>
      <% end %>

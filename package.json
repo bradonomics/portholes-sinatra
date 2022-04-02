@@ -18,6 +18,6 @@
     "sass": "^1.49.8"
   },
   "scripts": {
-    "css": "sass public/scss/styles.scss public/css/styles.css"
+    "css": "sass app/assets/scss/styles.scss public/css/styles.css"
   }
 }

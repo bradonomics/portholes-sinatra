@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
     document = Portholes.new(params[:link])
     article = Article.new
     article.title = document.title
-    article.link = document.url
+    article.source_url = document.url
     article.body = document.body
     article.folder_id = params[:folder_id]
     article.position = Article.count + 1

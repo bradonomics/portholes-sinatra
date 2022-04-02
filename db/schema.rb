@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2022_02_21_194421) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
-    t.string "link"
+    t.string "source_url"
     t.string "body"
     t.integer "position"
     t.integer "folder_id", null: false

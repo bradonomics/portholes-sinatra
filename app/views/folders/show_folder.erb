@@ -20,8 +20,8 @@
           <% end %>
           <div class="title-wrapper">
             <p class="title"><a href="/article/<%= article.id %>"><%= article.title %></a></p>
-            <% if article.link.include? 'http' %>
-              <p class="link"><%= url_only(article.link) %><a href="<%= article.link %>"><%= inline_svg('external-link-alt-solid.svg') %></a></p>
+            <% if article.source_url.include? 'http' %>
+              <p class="link"><%= url_only(article.source_url) %><a href="<%= article.source_url %>"><%= inline_svg('external-link-alt-solid.svg') %></a></p>
             <% end %>
           </div>
         </div>

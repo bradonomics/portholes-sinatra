@@ -1,7 +1,7 @@
 <aside class="sidebar">
   <nav class="widget">
-    <% if @article.link.include? 'http' %>
-      <a href="<%= @article.link %>"><%= inline_svg('external-link-alt-solid.svg') %>Original</a>
+    <% if @article.source_url.include? 'http' %>
+      <a href="<%= @article.source_url %>"><%= inline_svg('external-link-alt-solid.svg') %>Original</a>
     <% end %>
     <a href="/article/<%= params[:id] %>/edit"><%= inline_svg('edit-solid.svg') %>Edit</a>
     <% unless @article.folder.permalink == 'archive' %>

@@ -18,6 +18,7 @@ gem 'rack-flash3'
 gem 'rake'
 gem 'httparty'
 gem 'nokogiri'
+gem 'addressable'
 
 # Debugging
 gem 'pry'

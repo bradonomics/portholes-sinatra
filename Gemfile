@@ -19,6 +19,7 @@ gem 'rake'
 gem 'httparty'
 gem 'nokogiri'
 gem 'addressable'
+gem 'down'
 
 # Debugging
 gem 'pry'

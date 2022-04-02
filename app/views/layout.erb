@@ -30,7 +30,7 @@
             </a>
             <ul class="sub-menu" data-collapsed="true">
               <% if downloadable_folder? %>
-                <li class="menu-item"><a href="/download">Download</a></li>
+                <li class="menu-item"><a href="/folder/<%= @folder.permalink %>/download">Download</a></li>
               <% end %>
               <% if request.path_info == "/folder/unread" %>
                 <li class="menu-item"><a id="archive-all" href="/archive-all">Archive All</a></li>

@@ -102,7 +102,14 @@
       margin-left: 0;
     }
 
-    a {
+    button {
+      background-color: transparent;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    a,
+    button {
       @include breakpoint(md) {
         display: inline-block;
         margin: 0;
@@ -114,6 +121,7 @@
     }
 
     a:hover,
+    button:hover,
     &.active > a {
       color: $body-text-color;
       @include breakpoint(md) {

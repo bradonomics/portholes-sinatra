@@ -12,7 +12,7 @@ gem 'sinatra-activerecord', require: 'sinatra/activerecord'
 gem 'sqlite3'
 
 # Flash Messages
-gem 'rack-flash3'
+gem 'sinatra-flash'
 
 # Tools
 gem 'rake'

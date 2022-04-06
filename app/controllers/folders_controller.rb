@@ -10,7 +10,7 @@ class FoldersController < ApplicationController
     folder = Folder.find_by(name: params[:name])
     if folder.nil?
       folder = Folder.create(name: params[:name])
-      flash[:message] = "Folder #{folder.name} created."
+      flash[:success] = "Folder #{folder.name} created."
     else
       flash[:error] = "Folder #{params[:name]} already exists."
     end
@@ -41,7 +41,7 @@ class FoldersController < ApplicationController
     new_name = Folder.find_by(name: params[:name])
     if new_name.nil?
       folder.update(name: params[:name])
-      flash[:message] = "Folder #{folder.name} changed."
+      flash[:success] = "Folder #{folder.name} changed."
       redirect to("/folder/#{folder.permalink}")
     else
       flash[:error] = "Folder #{params[:name]} already exists."
@@ -71,7 +71,7 @@ class FoldersController < ApplicationController
     end
 
     folder.delete
-    flash[:message] = "#{folder.name} was deleted."
+    flash[:success] = "#{folder.name} was deleted."
     redirect_to_home_page
   end
 

@@ -1,6 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
-require 'rack-flash'
+require 'sinatra/flash'
 require 'better_errors'
 require 'uri'
 
@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
 
   register Sinatra::Reloader
   also_reload('lib/**/*.rb')
-  use Rack::Flash
+  register Sinatra::Flash
 
   configure do
     set :public_folder, 'public'

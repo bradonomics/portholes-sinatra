@@ -68,7 +68,7 @@ class ArticlesController < ApplicationController
   # update existing article
   patch '/article/:id' do
     article = Article.find(params[:id])
-    article.update(title: params[:title], link: params[:link], body: params[:body], folder_id: params[:folder_id])
+    article.update(title: params[:title], source_url: params[:source_url], body: params[:body], folder_id: params[:folder_id])
     redirect to("/article/#{article.id}")
   end
 

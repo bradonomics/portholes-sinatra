@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Framework
 gem 'sinatra'
 gem 'sinatra-contrib', require: false
+gem 'sinatra-cross_origin'
 
 # Web Server
 gem 'thin'

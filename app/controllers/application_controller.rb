@@ -8,12 +8,14 @@ class ApplicationController < Sinatra::Base
 
   register Sinatra::Reloader
   also_reload('lib/**/*.rb')
+  register Sinatra::CrossOrigin
   register Sinatra::Flash
 
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    enable :cross_origin
     use BetterErrors::Middleware
     BetterErrors.application_root = __dir__
   end

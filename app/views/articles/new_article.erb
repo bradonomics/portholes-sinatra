@@ -15,8 +15,7 @@
   </div>
 
     <div class="field">
-      <label for="article_link">Link</label>
-      <input type="text" name="link">
+      <input type="hidden" name="source_url" value="<%= Article.last.id + 1 %>">
     </div>
 
   <div class="field">
@@ -25,6 +24,6 @@
   </div>
 
   <div class="actions">
-    <input type="submit" name="commit" value="Update Article">
+    <input type="submit" name="commit" value="Add Article">
   </div>
 </form>

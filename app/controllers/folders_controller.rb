@@ -49,6 +49,18 @@ class FoldersController < ApplicationController
     end
   end
 
+  patch '/folder/:permalink/archive-all' do
+    folder = Folder.find_by(permalink: params[:permalink])
+    folder.articles.each do |article|
+      Article.find(article.id).update_columns(folder_id: Folder.find_by(name: 'Archive').id)
+    end
+    redirect to("/folder/#{folder.permalink}")
+  end
+
+  # sort articles within folder
+  # patch '/folder/:permalink/sort' do
+  # end
+
   # download ebook
   get '/folder/:permalink/download' do
     folder = Folder.find_by(permalink: params[:permalink])

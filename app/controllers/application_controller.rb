@@ -31,12 +31,21 @@ class ApplicationController < Sinatra::Base
       file.read.to_s
     end
 
-  #   def redirect_to_home_page
-  #     redirect to "/expenses"
-  #   end
-
     def redirect_to_home_page
       redirect to '/folder/unread'
+    end
+
+    def url_only(url)
+      # TODO: Change this method name. It's confusing.
+      URI.parse(url).host
+    end
+
+    def downloadable_folder?
+      return true if request.path_info.include?('/folder') && request.path_info != '/folder/archive'
+    end
+
+    def article_page?
+      return true if request.path_info.include?('/article')
     end
 
   end

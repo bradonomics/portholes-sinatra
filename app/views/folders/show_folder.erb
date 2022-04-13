@@ -4,9 +4,7 @@
 
   <h1>
     <%= @folder.name %>
-    <% unless default_folder? %>
-      <a href="/folder/<%= params[:permalink] %>/edit"><%= inline_svg("edit-solid.svg") %>Edit</a>
-    <% end %>
+    <% unless default_folder? %><a href="/folder/<%= params[:permalink] %>/edit"><%= inline_svg("edit.svg") %>Edit</a><% end %>
   </h1>
 
   <div id="articles">
@@ -15,13 +13,13 @@
         <div class="sort-title-wrapper">
           <% unless request.path_info == "/folder/archive" %>
             <div class="sort">
-              <%= inline_svg("sort-solid.svg") %>
+              <%= inline_svg("sort.svg") %>
             </div>
           <% end %>
           <div class="title-wrapper">
             <p class="title"><a href="/article/<%= article.id %>"><%= article.title %></a></p>
             <% if article.source_url.include? 'http' %>
-              <p class="link"><%= url_only(article.source_url) %><a href="<%= article.source_url %>"><%= inline_svg('external-link-alt-solid.svg') %></a></p>
+              <p class="link"><%= url_only(article.source_url) %><a href="<%= article.source_url %>"><%= inline_svg('external-link.svg') %></a></p>
             <% end %>
           </div>
         </div>

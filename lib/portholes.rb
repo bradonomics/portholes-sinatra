@@ -6,8 +6,8 @@ module Portholes
 
   def initialize; end
 
-  def new(url)
-    Document.new(url)
+  def new(url, last_parser)
+    Document.new(url, last_parser)
   end
 
 end

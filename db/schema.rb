@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_21_194421) do
     t.string "source_url"
     t.string "body"
     t.integer "position"
+    t.string "last_parser"
     t.integer "folder_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

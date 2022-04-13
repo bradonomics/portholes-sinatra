@@ -41,7 +41,7 @@
     height: .8rem;
   }
 
-  form {
+  &.sidebar--folder form {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -59,14 +59,16 @@
 
   }
 
-  .article-delete-button {
+  &.sidebar--article form {
     display: block;
 
     button {
       display: flex;
       align-items: center;
       margin-bottom: .5rem;
+      background-color: transparent;
       padding: .313rem 1rem .313rem 2.4rem;
+      color: $body-text-color;
 
       &:hover {
         width: 100%;

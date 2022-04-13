@@ -5,9 +5,10 @@ require 'open3'
 module Portholes
   class Parser
 
-    def initialize(url, document)
+    def initialize(url, document, last_parser)
       @url = url
       @document = document
+      @last_parser = last_parser
     end
 
     def title
@@ -23,14 +24,22 @@ module Portholes
     end
 
     def body
-      # Send document to Readability for parsing
-      whole_document = @document
-      parsed_document, error_code = Open3.capture2("node lib/readability.js '#{@url}'", stdin_data: whole_document)
-      if error_code == 0
-        return parsed_document.to_s
-      else
+      if @last_parser == 'mozilla'
         document_parser
+      else # Send document to Readability for parsing
+        document = @document
+        parsed_document, error_code = Open3.capture2("node lib/readability.js '#{@url}'", stdin_data: document)
+        if error_code == 0
+          @parser_used = 'mozilla'
+          return parsed_document.to_s
+        else
+          document_parser
+        end
       end
+    end
+
+    def parser_used
+      return @parser_used
     end
 
     private
@@ -98,6 +107,7 @@ module Portholes
           end
         end
 
+        @parser_used = 'portholes'
         return article.to_s
       end
 

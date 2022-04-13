@@ -1,16 +1,16 @@
 class ArticlesController < ApplicationController
   set :show_exceptions, :after_handler
 
+  # display an article
+  get '/article/:id' do
+    @article = Article.find(params[:id])
+    erb :'articles/show_article'
+  end
+
   # new article page
   get '/article/new' do
     @folders = Folder.all
     erb :'articles/new_article'
-  end
-
-  # new article from bookmarklet
-  get '/article' do
-    content_type 'text/javascript'
-    erb :'articles/index_article.js', layout: false
   end
 
   # create new article
@@ -24,8 +24,8 @@ class ArticlesController < ApplicationController
       article.folder_id = params[:folder_id]
       article.position = Article.count + 1
     else
-      document = Portholes.new(params[:source_url])
-      # if link is already in database for this user, move it to home
+      document = Portholes.new(params[:source_url], nil)
+      # if link is already in database for this user, move it to Unread
       if Article.find_by_source_url(document.url).present?
         article = Article.find_by_source_url(document.url)
         # Move the article in position 0 so this article can be in position 0
@@ -51,10 +51,10 @@ class ArticlesController < ApplicationController
     redirect to("/folder/#{folder.permalink}")
   end
 
-  # display an article
-  get '/article/:id' do
-    @article = Article.find(params[:id])
-    erb :'articles/show_article'
+  # new article from bookmarklet
+  get '/article' do
+    content_type 'text/javascript'
+    erb :'articles/index_article.js', layout: false
   end
 
   # edit article page
@@ -72,12 +72,14 @@ class ArticlesController < ApplicationController
     redirect to("/article/#{article.id}")
   end
 
-  # delete article
-  delete '/article/:id/delete' do
+  # refetch article
+  patch '/article/:id/refetch' do
     article = Article.find(params[:id])
-    folder = Folder.find(article.folder_id)
-    article.destroy
-    redirect to("/folder/#{folder.permalink}")
+    document = Portholes.new(article.source_url, article.last_parser)
+    article.body = document.body
+    article.last_parser = document.parser_used
+    article.save
+    redirect to("/article/#{article.id}")
   end
 
   # archive article
@@ -97,6 +99,14 @@ class ArticlesController < ApplicationController
     article.position = 0
     article.folder_id = Folder.find_by(name: "Unread").id
     article.save!
+    redirect to("/folder/#{folder.permalink}")
+  end
+
+  # delete article
+  delete '/article/:id/delete' do
+    article = Article.find(params[:id])
+    folder = Folder.find(article.folder_id)
+    article.destroy
     redirect to("/folder/#{folder.permalink}")
   end
 

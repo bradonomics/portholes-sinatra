@@ -4,7 +4,7 @@
   <h1>Edit <%= @folder.name %></h1>
 
   <form class="folder-edit" action="/folder/<%= params[:permalink] %>" method="post">
-    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="_method" value="patch">
     <div class="d-flex justify-content-between">
       <div class="field">
         <label for="folder_name">Name</label>

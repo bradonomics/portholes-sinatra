@@ -3,7 +3,7 @@ require 'addressable/uri'
 module Portholes
   module URL
 
-    TRACKING_PARAMS = ['affil', 'affiliate', 'app_id', 'client_', 'fb_', 'fbclid', 'ga_', 'hmb_', 'ic_', 'ncid', 'ocid', 'pd_rd', 'ref', 'ref_', 'referer', 'referrer', 'service_', 'share_', 'twclid', 'utm_', 'xid', 'yclid']
+    TRACKING_PARAMS = ['affil', 'affiliate', 'app_id', 'client_', 'fb_', 'fbclid', 'ga_', 'hmb_', 'ic_', 'ncid', 'ocid', 'pd_rd', 'ref', 'ref_', 'referer', 'referrer', 'service_', 'share_', 'token', 'twclid', 'utm_', 'xid', 'yclid']
 
     def self.untrack(url)
       u = Addressable::URI.parse(url)

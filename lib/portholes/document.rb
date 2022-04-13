@@ -5,14 +5,15 @@ module Portholes
 
   # Portholes::Document parses the document with Nokogiri.
   class Document
-    attr_reader :url, :title, :author, :body
+    attr_reader :url, :title, :author, :body, :parser_used
 
-    def initialize(url)
+    def initialize(url, last_parser)
       @url = Portholes::URL.untrack(url)
-      @meta = Portholes::Parser.new(@url, parsed_document)
+      @meta = Portholes::Parser.new(@url, parsed_document, last_parser)
       @title = @meta.title
       @author = @meta.author
       @body = @meta.body
+      @parser_used = @meta.parser_used
     end
 
     def response

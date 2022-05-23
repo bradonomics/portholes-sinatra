@@ -95,9 +95,6 @@ module Portholes
           article = @document.at_css("body")
         end
 
-        # Remove unwanted HTML elements
-        article.search('aside', 'script', 'noscript', 'style', 'nav', 'video', 'form', 'button', 'fbs-ad', 'map').remove
-
         # Remove unwanted elements by class/id
         # TODO: make case insensitive to shorten file length
         file = File.join('lib', 'removal_list')

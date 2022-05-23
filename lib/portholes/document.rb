@@ -32,7 +32,10 @@ module Portholes
 
     # Pasrse document with Nokogiri
     def parsed_document
-      Nokogiri::HTML(document.to_s)
+      parsed_document = Nokogiri::HTML(document.to_s)
+      # Remove non-article elements before sending to parser
+      parsed_document.search('aside', 'script', 'noscript', 'style', 'nav', 'video', 'form', 'button', 'fbs-ad', 'map').remove
+      return parsed_document
     end
 
   end

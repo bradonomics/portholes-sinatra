@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'uri'
 require 'json'
 require 'open3'
 
@@ -24,7 +25,8 @@ module Portholes
     end
 
     def body
-      if @last_parser == 'mozilla'
+      poorly_parsed_urls = ['newyorker.com']
+      if @last_parser == 'mozilla' || poorly_parsed_urls.any? { |domain| URI.parse(@url).host.include?(domain) }
         document_parser
       else # Send document to Readability for parsing
         document = @document

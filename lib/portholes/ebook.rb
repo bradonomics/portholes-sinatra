@@ -15,7 +15,7 @@ module Portholes
       @folder = folder
       @ebook_file_name = "Portholes-#{folder.name.parameterize(preserve_case: true)}-#{Date.today.to_s}"
       download
-      mobi(@full_directory_path, @ebook_file_name, @folder)
+      ebook(@full_directory_path, @ebook_file_name, @folder)
     end
 
     private
@@ -153,11 +153,13 @@ module Portholes
 
       end
 
-      def mobi(full_directory_path, ebook_file_name, folder)
+      def ebook(full_directory_path, ebook_file_name, folder)
         date = Date.today
         system("zip -r #{full_directory_path}.zip #{full_directory_path}")
-        system("ebook-convert #{full_directory_path}.zip public/downloads/#{ebook_file_name}.mobi --authors \"Portholes\" --no-inline-toc --chapter 'page' --title \"#{folder.name}: #{date.strftime('%a, %d %b %Y')}\" --change-justification 'left' --page-breaks-before '/'")
+        system("ebook-convert #{full_directory_path}.zip public/downloads/#{ebook_file_name}.epub --authors \"Portholes\" --chapter 'page' --title \"#{folder.name}: #{date.strftime('%a, %d %b %Y')}\" --change-justification 'left' --page-breaks-before '/'")
+        system("ebook-convert public/downloads/#{ebook_file_name}.epub public/downloads/#{ebook_file_name}.azw3")
         File.delete("#{full_directory_path}.zip")
+        File.delete("public/downloads/#{ebook_file_name}.epub")
         FileUtils.rm_r(full_directory_path)
       end
 

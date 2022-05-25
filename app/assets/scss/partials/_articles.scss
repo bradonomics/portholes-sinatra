@@ -9,6 +9,13 @@
   background-color: #fff;
   padding: .7rem;
 
+  .content-sidebar & {
+    display: block;
+    border: 0;
+    background-color: inherit;
+    padding: 0;
+  }
+
   &.moving-background {
     background-color: lighten($primary-color, 30%);
   }

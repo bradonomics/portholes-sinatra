@@ -717,6 +717,12 @@ button:disabled:hover,
   background-color: #fff;
   padding: 0.7rem;
 }
+.content-sidebar .article {
+  display: block;
+  border: 0;
+  background-color: inherit;
+  padding: 0;
+}
 .article.moving-background {
   background-color: #e6f0e6;
 }

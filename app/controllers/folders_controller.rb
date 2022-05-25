@@ -21,10 +21,11 @@ class FoldersController < ApplicationController
   get '/folder/:permalink' do
     @folder = Folder.find_by(permalink: params[:permalink])
     @articles = @folder.articles
-    if params[:permalink] == 'unread'
-      @pagy, @articles = pagy(@articles.order(position: :asc), items: 50)
-    else
+    if params[:permalink] == 'archive'
+      @articles = @folder.articles.order('created_at desc')
       @pagy, @articles = pagy(@articles.order(position: :desc), items: 50)
+    else
+      @pagy, @articles = pagy(@articles.order(position: :asc), items: 50)
     end
     erb :'folders/show_folder'
   end
@@ -49,6 +50,7 @@ class FoldersController < ApplicationController
     end
   end
 
+  # archive all articles in folder
   patch '/folder/:permalink/archive-all' do
     folder = Folder.find_by(permalink: params[:permalink])
     folder.articles.each do |article|
@@ -58,8 +60,13 @@ class FoldersController < ApplicationController
   end
 
   # sort articles within folder
-  # patch '/folder/:permalink/sort' do
-  # end
+  patch '/folder/:permalink/sort' do
+    # puts "THE RIGHT ONE IS BEING USED."
+    # puts "PARAMS: #{params}"
+    params[:articles].split(',').map.with_index do |id, position|
+      Article.find(id).update_columns(position: position)
+    end
+  end
 
   # download ebook
   get '/folder/:permalink/download' do

@@ -17,7 +17,7 @@ gem 'sinatra-flash'
 
 # Tools
 gem 'rake'
-gem 'httparty'
+gem "http"
 gem 'nokogiri'
 gem 'addressable'
 gem 'down'

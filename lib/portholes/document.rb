@@ -1,5 +1,5 @@
 require 'nokogiri'
-require 'httparty'
+require 'http'
 
 module Portholes
 
@@ -9,7 +9,7 @@ module Portholes
 
     def initialize(url, last_parser)
       @url = Portholes::URL.untrack(url)
-      @meta = Portholes::Parser.new(@url, parsed_document, last_parser)
+      @meta = Portholes::Parser.new(@url, document, last_parser)
       @title = @meta.title
       @author = @meta.author
       @body = @meta.body
@@ -17,25 +17,25 @@ module Portholes
     end
 
     def response
-      request = HTTParty.get(@url)
-      if request.response.code == '200'
-        return request
-      else
-        raise "Article not found. Check the URL and try again."
+      # https://webmasters.stackexchange.com/questions/126452/what-headers-used-in-request-by-google-bot
+      # https://www.searchdatalogy.com/blog/googlebots-http-headers/
+      # https://developers.google.com/search/docs/advanced/crawling/overview-google-crawlers
+      http = HTTP.headers("User-Agent" => "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
+      request = http.get(@url)
+      unless request.code == 200
+        request = HTTP.get(@url)
       end
-    end
-
-    # Fetch document
-    def document
-      response.body
+      return request.to_s
+    rescue
+      raise "Article not found. Check the URL and try again."
     end
 
     # Pasrse document with Nokogiri
-    def parsed_document
-      parsed_document = Nokogiri::HTML(document.to_s)
+    def document
+      document = Nokogiri::HTML(response)
       # Remove non-article elements before sending to parser
-      parsed_document.search('aside', 'script', 'noscript', 'style', 'nav', 'video', 'form', 'button', 'fbs-ad', 'map').remove
-      return parsed_document
+      document.search('aside', 'script', 'noscript', 'style', 'nav', 'video', 'form', 'button', 'fbs-ad', 'map').remove
+      return document
     end
 
   end

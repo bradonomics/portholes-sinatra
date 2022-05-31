@@ -123,9 +123,9 @@ module Portholes
 
       def no_image_found(full_directory_path, file_name, img, count)
         # Copy the "no-image" file to the appropriate directory
-        FileUtils.cp("app/assets/no-image.jpg", "#{full_directory_path}/#{file_name}/#{count.to_words}.jpg")
+        FileUtils.cp("app/assets/no-image.jpg", "#{full_directory_path}/#{file_name}/#{to_words(count)}.jpg")
         # Update the `img` tag in the article body
-        img.attributes['src'].value = "#{file_name}/#{count.to_words}.jpg"
+        img.attributes['src'].value = "#{file_name}/#{to_words(count)}.jpg"
       end
 
       def writer(target_file, article, title, host)

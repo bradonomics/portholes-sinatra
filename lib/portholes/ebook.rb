@@ -94,7 +94,7 @@ module Portholes
           end
 
           # Download the image with Down gem
-          if HTTP.get(url).code == '200' # Check that the image is avaliable (no 404s)
+          if HTTP.get(url).code == 200 # Check that the image is avaliable (no 404s)
             image = Down.download(img.attr('src'))
             # Get the file extention
             image_type = Rack::Mime::MIME_TYPES.invert[image.content_type]

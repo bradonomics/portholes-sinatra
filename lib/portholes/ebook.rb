@@ -196,9 +196,9 @@ module Portholes
             return str + "#{name}"
           elsif integer < 100 && integer/number > 0
             return str + "#{name}" if integer%number == 0
-            return str + "#{name} " + in_words(integer%number)
+            return str + "#{name} " + to_words(integer%number)
           elsif integer/number > 0
-            return str + in_words(integer/number) + " #{name} " + in_words(integer%number)
+            return str + to_words(integer/number) + " #{name} " + to_words(integer%number)
           end
         end
       end

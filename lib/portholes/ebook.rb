@@ -34,13 +34,7 @@ module Portholes
 
           # Add title and file_name to files array
           title = url.title
-          if title.parameterize.blank?
-            file_name = title
-            # If the above turns out to be a poor choice, this is how you can get an encoded URL:
-            # file_name = Addressable::URI.encode(title)
-          else
-            file_name = title.parameterize
-          end
+          file_name = url.id
           files.push([title, file_name])
 
           # Download images and replace image src in article

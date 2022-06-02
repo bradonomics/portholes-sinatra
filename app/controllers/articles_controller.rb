@@ -1,16 +1,16 @@
 class ArticlesController < ApplicationController
   set :show_exceptions, :after_handler
 
-  # display an article
-  get '/article/:id' do
-    @article = Article.find(params[:id])
-    erb :'articles/show_article'
-  end
-
   # new article page
   get '/article/new' do
     @folders = Folder.all
     erb :'articles/new_article'
+  end
+
+  # display an article
+  get '/article/:id' do
+    @article = Article.find(params[:id])
+    erb :'articles/show_article'
   end
 
   # create new article

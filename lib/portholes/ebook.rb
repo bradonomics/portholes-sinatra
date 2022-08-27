@@ -74,9 +74,9 @@ module Portholes
             end
           end
 
-          # Make sure the image isn't an svg added as `data:image`
+          # Make sure the image isn't added as `data:image`
           # TODO: convert to image file?
-          if img.attr('src').include? 'data:image/svg+xml'
+          if img.attr('src').include? 'data:image'
             no_image_found(full_directory_path, file_name, img, count)
             count += 1
             next
@@ -86,7 +86,7 @@ module Portholes
           url = URI.parse(img.attr('src'))
 
           # Check if there is some amazon ad nonsense
-          if url.host.include?('amazon-adsystem.com')
+          if url.host && url.host.include?('amazon-adsystem.com')
             img.set_attribute('src', '')
             no_image_found(full_directory_path, file_name, img, count)
             count += 1

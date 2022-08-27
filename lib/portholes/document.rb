@@ -34,7 +34,7 @@ module Portholes
     def document
       document = Nokogiri::HTML(response)
       # Remove non-article elements before sending to parser
-      document.search('aside', 'script', 'noscript', 'style', 'nav', 'video', 'form', 'button', 'fbs-ad', 'map').remove
+      document.search('aside', 'script', 'noscript', 'style', 'nav', 'video', 'audio', 'form', 'button', 'fbs-ad', 'map', 'svg').remove
       return document
     end
 

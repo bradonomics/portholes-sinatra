@@ -21,9 +21,9 @@ module Portholes
     private
 
       def download
-        Dir.mkdir("public/downloads") unless Dir.exists?("public/downloads")
+        Dir.mkdir("public/downloads") unless Dir.exist?("public/downloads")
         FileUtils.rm_rf("public/downloads/.", secure: true) # Remove previously downloaded files
-        Dir.mkdir(@full_directory_path) unless Dir.exists?(@full_directory_path)
+        Dir.mkdir(@full_directory_path) unless Dir.exist?(@full_directory_path)
         files = []
 
         @articles.order(:position).first(50).each do |url|
@@ -38,7 +38,7 @@ module Portholes
           files.push([title, file_name])
 
           # Download images and replace image src in article
-          Dir.mkdir("#{@full_directory_path}/#{file_name}") unless Dir.exists?("#{@full_directory_path}/#{file_name}")
+          Dir.mkdir("#{@full_directory_path}/#{file_name}") unless Dir.exist?("#{@full_directory_path}/#{file_name}")
           article = images(@full_directory_path, file_name, article)
 
           # Create a new file in `directory` with article contents

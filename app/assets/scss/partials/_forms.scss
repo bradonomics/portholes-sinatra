@@ -251,3 +251,18 @@ form {
 .article-form {
   width: 100%;
 }
+
+.search-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+
+  input {
+    margin: 0;
+  }
+
+  input[type='submit'] {
+    margin-left: 1rem;
+  }
+
+}

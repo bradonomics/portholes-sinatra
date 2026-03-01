@@ -2,16 +2,14 @@ require 'nokogiri'
 require 'http'
 
 module Portholes
-
   # Portholes::Document parses the document with Nokogiri.
   class Document
-    attr_reader :url, :title, :author, :body, :parser_used
+    attr_reader :url, :title, :body, :parser_used
 
     def initialize(url, last_parser)
       @url = Portholes::URL.untrack(url)
       @meta = Portholes::Parser.new(@url, document, last_parser)
       @title = @meta.title
-      @author = @meta.author
       @body = @meta.body
       @parser_used = @meta.parser_used
     end
@@ -33,11 +31,12 @@ module Portholes
     # Pasrse document with Nokogiri
     def document
       document = Nokogiri::HTML(response)
+
       # Remove non-article elements before sending to parser
       document.search('aside', 'script', 'noscript', 'style', 'nav', 'video', 'audio', 'form', 'button', 'fbs-ad', 'map', 'svg').remove
+
       return document
     end
 
   end
-
 end

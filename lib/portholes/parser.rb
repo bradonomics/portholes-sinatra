@@ -135,3 +135,27 @@ module Portholes
 
   end
 end
+
+if __FILE__ == $0
+  # url = URI.parse("https://www.newyorker.com/culture/personal-history/notes-on-work")
+  # poorly_parsed_urls = ['newyorker.com']
+  # puts poorly_parsed_urls.any? { |i| url.host.include? i }
+  # puts url.host
+  # puts url.host.include?('newyorker.com')
+
+
+#   doc = Nokogiri::HTML(<<EOT)
+#     <div id="readability-page-1" class="page"><div>
+#     <article>
+#     <p>I come from Alabama. Somebody has to. In my early years, I lived in the south of the state, near Mobile. When I was thirteen or so, my father got a job in north Alabama, near Huntsville. Both places are rural. Scottsboro, the town where I went to high school, is about 15,000 people. I live 12 miles out of town. I can see my neighbor’s house but it’s far enough I can’t hear them unless they’re running a lawnmower or a chainsaw. That’s right, in Alabama we say running, not using.</p>
+#     </article>
+#     </div></div>
+# EOT
+
+#   foo_spans = doc.search('.page')
+#   foo_spans.each do |n|
+#     n['class'] = n['class'].gsub(/\bpage\b/, 'portholes-page')
+#   end
+
+#   puts doc.to_s
+end

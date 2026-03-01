@@ -631,6 +631,18 @@ form input.ebook-format-buton {
   width: 100%;
 }
 
+.search-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.search-form input {
+  margin: 0;
+}
+.search-form input[type=submit] {
+  margin-left: 1rem;
+}
+
 input[type=submit],
 input[type=reset],
 input[type=button],

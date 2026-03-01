@@ -35,8 +35,6 @@
               <input type="hidden" name="_method" value="patch">
               <button class="archive" type="submit" title="Move to Unread Folder"><%= inline_svg("home.svg") %></button>
             </form>
-            <!-- <a class="archive" href="#" title="Move to Unread Folder"><%= inline_svg("home.svg") %></a> -->
-            <%#= link_to inline_svg("home.svg"), unarchive_article_path(article), method: :patch, class: "archive", title: "Move to Unread Folder" %>
           <% end %>
           <form onsubmit="confirm('Are you sure you want to delete this article?')" action="/article/<%= article.id %>/delete" method="post">
             <input type="hidden" name="_method" value="DELETE">

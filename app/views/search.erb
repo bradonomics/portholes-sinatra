@@ -1,0 +1,25 @@
+<%= erb :'folders/_sidebar' %>
+
+<main class="main">
+
+  <form class="search-form" action="/search" method="get">
+    <input type="text" name="query">
+    <input type="submit" value="Search">
+  </form>
+
+  <% if @results %>
+    <% @results.each do |article| %>
+      <div class="article" data-id="<%= article.id %>">
+        <div class="sort-title-wrapper">
+          <div class="title-wrapper">
+            <p class="title"><a href="/article/<%= article.id %>"><%= article.title %></a></p>
+            <% if article.source_url.include? 'http' %>
+              <p class="link"><%= url_only(article.source_url) %><a href="<%= article.source_url %>"><%= inline_svg('external-link.svg') %></a></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</main>

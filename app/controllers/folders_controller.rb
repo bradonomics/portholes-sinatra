@@ -71,7 +71,7 @@ class FoldersController < ApplicationController
   # download ebook
   get '/folder/:permalink/download' do
     folder = Folder.find_by(permalink: params[:permalink])
-    ebook = Portholes::Ebook.new(Article.left_outer_joins(:folder).where(folder: folder), folder)
+    ebook = Portholes::Ebook.new(Article.where(folder: folder), folder)
     ebook_file = "public/downloads/#{ebook.ebook_file_name}.azw3"
     send_file(ebook_file, disposition: 'attachment', filename: File.basename(ebook_file))
     File.delete(ebook_file)

@@ -6,8 +6,6 @@ require 'uri'
 
 class ApplicationController < Sinatra::Base
 
-  register Sinatra::Reloader
-  also_reload('lib/**/*.rb')
   register Sinatra::CrossOrigin
   register Sinatra::Flash
 
@@ -16,12 +14,22 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     enable :cross_origin
+  end
+
+  configure :development do
+    register Sinatra::Reloader
+    also_reload('lib/**/*.rb')
     use BetterErrors::Middleware
     BetterErrors.application_root = __dir__
   end
 
   get '/' do
     redirect_to_home_page
+  end
+
+  get '/search' do
+    @results = Article.where("title like ?", "%#{params[:query]}%").or(Article.where("body like ?", "%#{params[:query]}%"))
+    erb :'search'
   end
 
   helpers do

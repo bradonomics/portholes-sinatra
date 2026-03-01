@@ -14,7 +14,7 @@ module Portholes
       @full_directory_path = "public/downloads/#{DateTime.now.to_s.parameterize}"
       @folder = folder
       @ebook_file_name = "Portholes-#{folder.name.parameterize(preserve_case: true)}-#{Date.today.to_s}"
-      download
+      download()
       ebook(@full_directory_path, @ebook_file_name, @folder)
     end
 
@@ -148,10 +148,20 @@ module Portholes
       end
 
       def ebook(full_directory_path, ebook_file_name, folder)
+        # Options for the `ebook-convert` command below can be found here:
+        # https://manual.calibre-ebook.com/generated/en/ebook-convert.html
+
         date = Date.today
+
+        # Create a zip of all html files created in the writer method above
         system("zip -r #{full_directory_path}.zip #{full_directory_path}")
+
+        # Convert the zipped files to an epub
         system("ebook-convert #{full_directory_path}.zip public/downloads/#{ebook_file_name}.epub --authors \"Portholes\" --chapter 'page' --title \"#{folder.name}: #{date.strftime('%a, %d %b %Y')}\" --change-justification 'left' --page-breaks-before '/'")
+
+        # Convert the epub to an AZW
         system("ebook-convert public/downloads/#{ebook_file_name}.epub public/downloads/#{ebook_file_name}.azw3")
+
         File.delete("#{full_directory_path}.zip")
         File.delete("public/downloads/#{ebook_file_name}.epub")
         FileUtils.rm_r(full_directory_path)

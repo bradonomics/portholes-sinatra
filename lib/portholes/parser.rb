@@ -29,9 +29,13 @@ module Portholes
       if @last_parser == 'mozilla' || poorly_parsed_urls.any? { |domain| URI.parse(@url).host.include?(domain) }
         document_parser
       else # Send document to Readability for parsing
-        document = @document
-        parsed_document, error_code = Open3.capture2("node lib/readability.js '#{@url}'", stdin_data: document)
-        if error_code == 0
+        preprocess_headings_for_readability!
+
+        parsed_document, status = Open3.capture2(
+          "node lib/readability.js '#{@url}'",
+          stdin_data: @document.to_html
+        )
+        if status.success?
           @parser_used = 'mozilla'
           return parsed_document.to_s
         else
@@ -108,6 +112,25 @@ module Portholes
 
         @parser_used = 'portholes'
         return article.to_s
+      end
+
+      def preprocess_headings_for_readability!
+        headers = @document.css("h1, h2, h3, h4, h5, h6")
+
+        headers.each do |header|
+          # Remove class and id attributes (prevents negative scoring in Readability)
+          header.remove_attribute("class")
+          header.remove_attribute("id")
+
+          # Capture plain text content
+          text_content = header.text
+
+          # Remove all child nodes (e.g., Substack anchor divs)
+          header.children.remove
+
+          # Restore only the clean text
+          header.content = text_content
+        end
       end
 
   end

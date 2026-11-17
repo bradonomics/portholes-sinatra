@@ -94,17 +94,22 @@ module Portholes
           end
 
           # Download the image with Down gem
-          if HTTP.get(url).code == 200 # Check that the image is avaliable (no 404s)
-            image = Down.download(img.attr('src'))
-            # Get the file extention
-            image_type = Rack::Mime::MIME_TYPES.invert[image.content_type]
-            # Rename the file for those idiots who like to string URLs together and break the internet
-            image_name = "#{to_words(count)}" + "#{image_type}"
-            # Move the file to the appropriate directory
-            FileUtils.mv(image.path, "#{full_directory_path}/#{file_name}/#{image_name}")
-            # Update the `img` tag in the article body
-            img.attributes['src'].value = "#{file_name}/#{image_name}"
-          else
+          begin
+            if HTTP.get(url).code == 200 # Check that the image is avaliable (no 404s)
+              image = Down.download(img.attr('src'))
+              # Get the file extention
+              image_type = Rack::Mime::MIME_TYPES.invert[image.content_type]
+              # Rename the file for those idiots who like to string URLs together and break the internet
+              image_name = "#{to_words(count)}" + "#{image_type}"
+              # Move the file to the appropriate directory
+              FileUtils.mv(image.path, "#{full_directory_path}/#{file_name}/#{image_name}")
+              # Update the `img` tag in the article body
+              img.attributes['src'].value = "#{file_name}/#{image_name}"
+            else
+              no_image_found(full_directory_path, file_name, img, count)
+            end
+          rescue OpenSSL::SSL::SSLError => e
+            warn "[ebook] SSL error fetching #{url}; using placeholder: #{e.message}"
             no_image_found(full_directory_path, file_name, img, count)
           end
 
